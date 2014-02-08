@@ -21,6 +21,6 @@ This will make Bootstrap 3 Skeleton at cursor location.
 
 # License #
 
-This extension is based on [Brackets HTML Skeleton](https://github.com/le717/brackets-html-skeleton) made by le717.
+This extension is based on [Brackets HTML Skeleton](https://github.com/le717/brackets-html-skeleton) made by @le717.
 
 Heavily based on the [Brackets Simple "Hello World" extension](https://github.com/adobe/brackets/wiki/Simple-%22Hello-World%22-extension).
