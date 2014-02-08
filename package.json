@@ -1,0 +1,21 @@
+{
+    "name": "mirorauhala.bootstrap-skeleton",
+    "title": "Bootsrap 3 Skeleton",
+    "description": "Add Bootstrap 3.1 HTML5 Skeleton to your page by going File > New Bootstrap 3 Document. You can also do it simply by pressing Ctrl-Shift-B! This is a fork from HTML Skeleton.",
+    "homepage": "https://github.com/mirorauhala/brackets-bootstrap-skeleton",
+    "version": "0.0.1",
+    "author": "Miro Rauhala (https://github.com/mirorauhala)",
+    "license": "MIT",
+    "engines": {
+        "brackets": ">=0.30.0"
+    },
+    "keywords": [
+        "Bootstrap",
+        "Bootstrap 3",
+        "HTML",
+        "device",
+        "screen",
+        "html",
+        "HTML Document"
+    ]
+}
