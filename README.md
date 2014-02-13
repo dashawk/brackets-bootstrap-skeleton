@@ -1,4 +1,4 @@
-# Brackets Bootstarp Skeleton #
+# Brackets Bootstrap Skeleton #
 
 An [Adobe Brackets](http://brackets.io) extension to add Bootstrap 3.1 HTML5 Skeleton to your page by going File > New Bootstrap 3 Document. You can also do it simply by pressing Ctrl-Shift-B! This is a fork from HTML Skeleton.
 
