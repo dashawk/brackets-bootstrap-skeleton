@@ -33,8 +33,8 @@ define(function () {
 								+ Indent2 + '<link rel="shortcut icon" href="">\n'
 								+ Indent2 + '<title>Starter Template for Bootstrap</title>\n\n'
 								+ Indent2 + '<!-- Bootstrap core CSS -->\n'
-								+ Indent2 + '<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">\n'
-								+ Indent2 + '<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css" rel="stylesheet">\n\n'
+								+ Indent2 + '<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">\n'
+								+ Indent2 + '<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" rel="stylesheet">\n\n'
 								+ Indent2 + '<!-- Custom styles for this template -->\n'
 								+ Indent2 + '<style>body{padding-top:50px;}.starter-template{padding:40px 15px;text-align:center;}</style>\n\n'
 								
@@ -71,7 +71,11 @@ define(function () {
 										+ Indent4 + '<p class="lead">Now you can start your own project with Bootstrap 3.1. This plugin is a fork from <a href="https://github.com/le717/brackets-html-skeleton">HTML Skeleton</a>.</p>\n'
 									+ Indent3 + '</div>\n'
 								+ Indent2 + '</div>\n'
-							+ Indent + '</body>\n'+
+							+ Indent + '</body>\n'
+						 + Indent + '<!-- jQuery (necessary for Bootstrap\'s JavaScript plugins) -->\n'+
+						 + Indent + '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>\n'
+						 + Indent + '<!-- compiled and minified Bootstrap JavaScript -->\n'
+						 + Indent + '<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>\n'+
 						 '</html>\n';
 
         var editor = EditorManager.getFocusedEditor();
