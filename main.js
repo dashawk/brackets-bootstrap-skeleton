@@ -88,6 +88,6 @@ define(function () {
     CommandManager.register("New Bootstrap 3 Document", EXTENSION_ID, inserthtmlSkelly);
 
     // Assign a keyboard shortcut
-    var theMenu = Menus.getMenu(Menus.AppMenuBar.FILE_MENU);
-    theMenu.addMenuItem(EXTENSION_ID, "Ctrl-Shift-B");
+   var theMenu = Menus.getMenu(Menus.AppMenuBar.FILE_MENU);
+    //theMenu.addMenuItem(EXTENSION_ID, "Ctrl-Shift-B");
 });
