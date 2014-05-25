@@ -72,11 +72,11 @@ define(function () {
                   Indent4 + '<p class="lead">Now you can start your own project with Bootstrap 3.1. This plugin is a fork from <a href="https://github.com/le717/brackets-html-skeleton">HTML Skeleton</a>.</p>\n' +
                 Indent3 + '</div>\n' +
               Indent2 + '</div>\n' +
-            Indent + '</body>\n' +
-           Indent + '<!-- jQuery (necessary for Bootstrap\'s JavaScript plugins) -->\n' +
-           Indent + '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>\n' +
-           Indent + '<!-- compiled and minified Bootstrap JavaScript -->\n' +
-           Indent + '<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>\n' +
+           Indent2 + '<!-- jQuery (necessary for Bootstrap\'s JavaScript plugins) -->\n' +
+           Indent2 + '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>\n' +
+           Indent2 + '<!-- compiled and minified Bootstrap JavaScript -->\n' +
+           Indent2 + '<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>\n' +
+           Indent + '</body>\n' +
            '</html>\n';
 
     var editor = EditorManager.getFocusedEditor();
