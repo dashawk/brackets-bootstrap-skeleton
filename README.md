@@ -9,6 +9,7 @@ An [Adobe Brackets](http://brackets.io) extension to add Bootstrap 3.1 HTML5 Ske
 
 # Updates #
 
+* 0.0.2, 25/5/2014 - I had some problems typing Bootstrap correctly, so there's that & removed the shortcut
 * 0.0.1, 8/2/2014 - Initial release
 
 # TODO #
