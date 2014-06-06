@@ -73,7 +73,7 @@ define(function () {
                 Indent3 + '</div>\n' +
               Indent2 + '</div>\n' +
            Indent2 + '<!-- jQuery (necessary for Bootstrap\'s JavaScript plugins) -->\n' +
-           Indent2 + '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>\n' +
+           Indent2 + '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>\n' +
            Indent2 + '<!-- compiled and minified Bootstrap JavaScript -->\n' +
            Indent2 + '<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>\n' +
            Indent + '</body>\n' +
