@@ -29,7 +29,7 @@ define(function () {
     var htmlSkelly = '<!DOCTYPE html>\n' +
            '<html lang="en">\n' +
              Indent + '<head>\n' +
-                    Indent2 + '<meta charset="utf-8">\n' +
+              Indent2 + '<meta charset="utf-8">\n' +
               Indent2 + '<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">\n' +
               Indent2 + '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
               Indent2 + '<meta name="description" content="">\n' +
@@ -72,7 +72,7 @@ define(function () {
               Indent2 + '<div class="container">\n' +
                 Indent3 + '<div class="starter-template">\n' +
                   Indent4 + '<h1>Hello, world!</h1>\n' +
-                  Indent4 + '<p class="lead">Now you can start your own project with Bootstrap 3.1. This plugin is a fork from <a href="https://github.com/le717/brackets-html-skeleton">HTML Skeleton</a>.</p>\n' +
+                  Indent4 + '<p class="lead">Now you can start your own project with Bootstrap ' + bootstrapVersion + '. This plugin is a fork from <a href="https://github.com/le717/brackets-html-skeleton">HTML Skeleton</a>.</p>\n' +
                 Indent3 + '</div>\n' +
               Indent2 + '</div>\n' +
            Indent2 + '<!-- jQuery (necessary for Bootstrap\'s JavaScript plugins) -->\n' +
