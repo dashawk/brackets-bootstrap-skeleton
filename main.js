@@ -15,6 +15,9 @@ define(function () {
   function inserthtmlSkelly() {
     /* Insert the skeleton */
     // Assign a variable for 4 space indentation for easier construction
+    
+    var bootstrapVersion = "3.2.0";
+    
     var Indent  = "\u0020\u0020\u0020\u0020",
         Indent2 = Indent + Indent,
         Indent3 = Indent2 + Indent,
@@ -34,14 +37,14 @@ define(function () {
               Indent2 + '<link rel="shortcut icon" href="">\n' +
               Indent2 + '<title>Starter Template for Bootstrap</title>\n\n' +
               Indent2 + '<!-- Bootstrap core CSS -->\n' +
-              Indent2 + '<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">\n' +
-              Indent2 + '<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" rel="stylesheet">\n\n' +
+              Indent2 + '<link href="//netdna.bootstrapcdn.com/bootstrap/' + bootstrapVersion + '/css/bootstrap.min.css" rel="stylesheet">\n' +
+              Indent2 + '<link href="//netdna.bootstrapcdn.com/bootstrap/' + bootstrapVersion + '/css/bootstrap-theme.min.css" rel="stylesheet">\n\n' +
               Indent2 + '<!-- Custom styles for this template -->\n' +
               Indent2 + '<style>body{padding-top:50px;}.starter-template{padding:40px 15px;text-align:center;}</style>\n\n' +
 
               Indent2 + '<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->\n' +
               Indent2 + '<!--[if lt IE 9]>\n' +
-                Indent3 + '<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>\n' +
+                Indent3 + '<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>\n' +
                 Indent3 + '<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>\n' +
               Indent2 + '<![endif]-->\n' +
                   Indent + '</head>\n\n' +
@@ -75,7 +78,7 @@ define(function () {
            Indent2 + '<!-- jQuery (necessary for Bootstrap\'s JavaScript plugins) -->\n' +
            Indent2 + '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>\n' +
            Indent2 + '<!-- compiled and minified Bootstrap JavaScript -->\n' +
-           Indent2 + '<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>\n' +
+           Indent2 + '<script src="//netdna.bootstrapcdn.com/bootstrap/' + bootstrapVersion + '/js/bootstrap.min.js"></script>\n' +
            Indent + '</body>\n' +
            '</html>\n';
 
