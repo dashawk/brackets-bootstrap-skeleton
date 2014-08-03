@@ -37,8 +37,8 @@ define(function () {
               Indent2 + '<link rel="shortcut icon" href="">\n' +
               Indent2 + '<title>Starter Template for Bootstrap</title>\n\n' +
               Indent2 + '<!-- Bootstrap core CSS -->\n' +
-              Indent2 + '<link href="//netdna.bootstrapcdn.com/bootstrap/' + bootstrapVersion + '/css/bootstrap.min.css" rel="stylesheet">\n' +
-              Indent2 + '<link href="//netdna.bootstrapcdn.com/bootstrap/' + bootstrapVersion + '/css/bootstrap-theme.min.css" rel="stylesheet">\n\n' +
+              Indent2 + '<link href="http://netdna.bootstrapcdn.com/bootstrap/' + bootstrapVersion + '/css/bootstrap.min.css" rel="stylesheet">\n' +
+              Indent2 + '<link href="http://netdna.bootstrapcdn.com/bootstrap/' + bootstrapVersion + '/css/bootstrap-theme.min.css" rel="stylesheet">\n\n' +
               Indent2 + '<!-- Custom styles for this template -->\n' +
               Indent2 + '<style>body{padding-top:50px;}.starter-template{padding:40px 15px;text-align:center;}</style>\n\n' +
 
@@ -78,7 +78,7 @@ define(function () {
            Indent2 + '<!-- jQuery (necessary for Bootstrap\'s JavaScript plugins) -->\n' +
            Indent2 + '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>\n' +
            Indent2 + '<!-- compiled and minified Bootstrap JavaScript -->\n' +
-           Indent2 + '<script src="//netdna.bootstrapcdn.com/bootstrap/' + bootstrapVersion + '/js/bootstrap.min.js"></script>\n' +
+           Indent2 + '<script src="http://netdna.bootstrapcdn.com/bootstrap/' + bootstrapVersion + '/js/bootstrap.min.js"></script>\n' +
            Indent + '</body>\n' +
            '</html>\n';
 
