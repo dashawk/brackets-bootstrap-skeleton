@@ -3,7 +3,7 @@
     "title": "Bootstrap 3 Skeleton",
     "description": "Add Bootstrap 3 HTML5 Skeleton to your page by going File > New Bootstrap 3 Document.",
     "homepage": "https://github.com/mirorauhala/brackets-bootstrap-skeleton",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "author": "Miro Rauhala (https://github.com/mirorauhala)",
     "license": "MIT",
     "engines": {
