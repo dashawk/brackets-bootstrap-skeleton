@@ -1,5 +1,5 @@
 /*jslint vars: true, plusplus: true, devel: true, nomen: true, regexp: true, indent: 2, maxerr: 50 */
-/*global define, brackets */
+/*global define, brackets, $ */
 
 define(function (require, exports, module) {
   "use strict";
@@ -12,13 +12,39 @@ define(function (require, exports, module) {
       EditorManager  = brackets.getModule("editor/EditorManager"),
       Menus          = brackets.getModule("command/Menus");
 
+  /**
+   * @private
+   * Get the latest stable Boostrap version using the GitHub API
+   */
+  function _getLatestBootstrap() {
+    // However, we define a fallback just in case...
+    var fallbackVersion = "3.2.0";
+    var result = new $.Deferred();
+
+    // Perform an asynchronous request
+    $.ajax({
+      cache: false,
+      dataType: "json",
+      url: "https://api.github.com/repos/twbs/bootstrap/releases",
+      success: function(data) {
+        // Do not accept prereleases
+        if (!data[0].prerelease) {
+          result.resolve(data[0].tag_name.replace(/^v/, ""));
+        }
+      },
+      error: function() {
+        result.resolve(fallbackVersion);
+      }
+    });
+    return result.promise();
+  }
+
 
   /**
    * @private
    * Insert the selected elements into the document
    */
-  function inserthtmlSkelly() {
-    var BOOTSTRAP_VERSION = "3.2.0";
+  function _inserthtmlSkelly() {
 
     var Indent  = "\u0020\u0020\u0020\u0020",
         Indent2 = Indent + Indent,
@@ -83,19 +109,23 @@ define(function (require, exports, module) {
         Indent + "</body>\n" +
         "</html>\n";
 
-    var editor = EditorManager.getCurrentFullEditor();
-    if (editor) {
-      // Insert the skeleton at the current cursor position
-      var insertionPos = editor.getCursorPos();
-      editor.document.batchOperation(function () {
-        // Do a regex search for the `boots-version` keyword
-        // and replace it with the Bootstrap version constant
-        // Also replace all single quotes with double quotes
-        htmlSkelly = htmlSkelly.replace(/boots-version/g, BOOTSTRAP_VERSION)
-        .replace(/'/g, "\"");
-        editor.document.replaceRange(htmlSkelly, insertionPos);
-      });
-    }
+    // Since fetching the lastest version is an async process,
+    // the rest of the actions need to be too
+    _getLatestBootstrap().then(function (version) {
+      var editor = EditorManager.getCurrentFullEditor();
+      if (editor) {
+        // Insert the skeleton at the current cursor position
+        var insertionPos = editor.getCursorPos();
+        editor.document.batchOperation(function () {
+          // Do a regex search for the `boots-version` keyword
+          // and replace it with the Bootstrap version constant
+          // Also replace all single quotes with double quotes
+          htmlSkelly = htmlSkelly.replace(/boots-version/g, version)
+                                 .replace(/'/g, "\"");
+          editor.document.replaceRange(htmlSkelly, insertionPos);
+        });
+      }
+    });
   }
 
 
@@ -105,7 +135,7 @@ define(function (require, exports, module) {
    */
   AppInit.appReady(function () {
     var EXTENSION_ID = "mirorauhala.bootstrap-skeleton";
-    CommandManager.register("New Bootstrap 3 Document", EXTENSION_ID, inserthtmlSkelly);
+    CommandManager.register("New Bootstrap 3 Document", EXTENSION_ID, _inserthtmlSkelly);
     var theMenu = Menus.getMenu(Menus.AppMenuBar.FILE_MENU);
     theMenu.addMenuItem(EXTENSION_ID);
   });
