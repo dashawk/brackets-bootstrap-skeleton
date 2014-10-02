@@ -95,11 +95,11 @@ define(function (require, exports, module) {
         "indent-size<meta name='viewport' content='width=device-width, initial-scale=1.0'>\n" +
         "indent-size<meta name='description' content=''>\nindent-size<meta name='author' content=''>\n" +
         "indent-size<title>Starter Template for Bootstrap boots-version</title>\nindent-size<link rel='shortcut icon' href=''>\n" +
-        "indent-size<link rel='stylesheet' href='https://netdna.bootstrapcdn.com/bootstrap/boots-version/css/bootstrap.min.css'>\n" +
-        "indent-size<link rel='stylesheet' href='https://netdna.bootstrapcdn.com/bootstrap/boots-version/css/bootstrap-theme.min.css'>\n" +
+        "indent-size<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/boots-version/css/bootstrap.min.css'>\n" +
+        "indent-size<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/boots-version/css/bootstrap-theme.min.css'>\n" +
         "indent-size<style>body{padding-top:50px;}.starter-template{padding:40px 15px;text-align:center;}</style>\n\n" +
-        "indent-size<!--[if IE]>\nindent-sizeindent-size<script src='https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js'></script>\n" +
-        "indent-sizeindent-size<script src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js'></script>\nindent-size<![endif]-->\n" +
+        "indent-size<!--[if IE]>\nindent-sizeindent-size<script src='https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js'></script>\n" +
+        "indent-sizeindent-size<script src='https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js'></script>\nindent-size<![endif]-->\n" +
         "</head>\n\n<body>\nindent-size<nav class='navbar navbar-inverse navbar-fixed-top' role='navigation'>\n" +
         "indent-sizeindent-size<div class='container'>\nindent-sizeindent-sizeindent-size<div class='navbar-header'>\n" +
         "indent-sizeindent-sizeindent-sizeindent-size<button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>\n" +
@@ -120,7 +120,7 @@ define(function (require, exports, module) {
         "indent-sizeindent-sizeindent-sizeindent-size<p class='lead'>Now you can start your own project with <a target='_blank' href='http://getbootstrap.com/'>Bootstrap boots-version</a>. This plugin is a fork from <a href='https://github.com/le717/brackets-html-skeleton#readme'>HTML Skeleton</a>.</p>\n" +
         "indent-sizeindent-size</div>\nindent-size</div>\n\n" +
         "indent-size<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>\n" +
-        "indent-size<script src='https://netdna.bootstrapcdn.com/bootstrap/boots-version/js/bootstrap.min.js'></script>\n" +
+        "indent-size<script src='https://maxcdn.bootstrapcdn.com/bootstrap/boots-version/js/bootstrap.min.js'></script>\n" +
         "</body>\n</html>\n";
 
     // Since fetching the lastest version is an async process,
