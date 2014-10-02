@@ -7,10 +7,58 @@ define(function (require, exports, module) {
    * Simple extension that adds a "File > New Bootstrap 3 Document" menu item
    * to insert an Bootstrap 3 HTML "skeleton" at cursor position
    */
-  var AppInit        = brackets.getModule("utils/AppInit"),
-      CommandManager = brackets.getModule("command/CommandManager"),
-      EditorManager  = brackets.getModule("editor/EditorManager"),
-      Menus          = brackets.getModule("command/Menus");
+  var AppInit            = brackets.getModule("utils/AppInit"),
+      CommandManager     = brackets.getModule("command/CommandManager"),
+      EditorManager      = brackets.getModule("editor/EditorManager"),
+      Menus              = brackets.getModule("command/Menus"),
+      PreferencesManager = brackets.getModule("preferences/PreferencesManager");
+
+  // The user's indentation settings
+  var indentUnits  = "";
+
+  // jQuery version constant
+  var JQUERY_VERSION = "1.11.1";
+
+
+  /**
+   * @private
+   * Polyfill from http://stackoverflow.com/a/4550005
+   * @param str Text to be repeated.
+   * @param num Number of times text should be repeated.
+   * @return {string} repeated the number of times stated.
+   */
+  function _repeatString(str, num) {
+    return (new Array(num + 1)).join(str);
+  }
+
+  /**
+   * @private
+   * Get the current indentation settings for use in inserted code
+   * @return {string} User's current indentation settings
+   */
+  function _getIndentSize() {
+    // Check the current project's preference on tabs and
+    // update the indentation settings for either tabs for spaces
+    return (PreferencesManager.get("useTabChar", PreferencesManager.CURRENT_PROJECT) ?
+            _repeatString("\u0009", PreferencesManager.get("tabSize")) :
+            _repeatString("\u0020", PreferencesManager.get("spaceUnits")));
+  }
+
+
+  // Get user's indentation settings
+  PreferencesManager.on("change", function (e, data) {
+    data.ids.forEach(function (value, index) {
+      // A relevant preference was changed, update our settings
+      if (value === "useTabChar" || value === "tabSize" || value === "spaceUnits") {
+        // Do NOT attempt to assign `indentUnits` directly to the function.
+        // It will completely break otherwise.
+        var tempVar  = _getIndentSize();
+        indentUnits  = tempVar;
+      }
+    });
+  });
+
+
 
   /**
    * @private
@@ -46,68 +94,37 @@ define(function (require, exports, module) {
    */
   function _inserthtmlSkelly() {
 
-    var Indent  = "\u0020\u0020\u0020\u0020",
-        Indent2 = Indent + Indent,
-        Indent3 = Indent2 + Indent,
-        Indent4 = Indent2 + Indent2,
-        Indent5 = Indent2 + Indent3,
-        Indent6 = Indent3 + Indent3;
-
-    // The HTML skeleton
-    var htmlSkelly = "<!DOCTYPE html>\n" +
-        "<html lang=''>\n" +
-        Indent + "<head>\n" +
-        Indent2 + "<meta charset='UTF-8'>\n" +
-        Indent2 + "<meta name='viewport' content='width=device-width, initial-scale=1'>\n" +
-        Indent2 + "<meta name='description' content=''>\n" +
-        Indent2 + "<meta name='author' content=''>\n" +
-        Indent2 + "<link rel='shortcut icon' href=''>\n" +
-        Indent2 + "<title>Starter Template for Bootstrap</title>\n\n" +
-        Indent2 + "<!-- Bootstrap core CSS -->\n" +
-        Indent2 + "<link rel='stylesheet' href='https://netdna.bootstrapcdn.com/bootstrap/boots-version/css/bootstrap.min.css'>\n" +
-        Indent2 + "<link rel='stylesheet' href='https://netdna.bootstrapcdn.com/bootstrap/boots-version/css/bootstrap-theme.min.css'>\n\n" +
-        Indent2 + "<!-- Custom styles for this template -->\n" +
-        Indent2 + "<style>body{padding-top:50px;}.starter-template{padding:40px 15px;text-align:center;}</style>\n\n" +
-
-        Indent2 + "<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->\n" +
-        Indent2 + "<!--[if IE]>\n" +
-        Indent3 + "<script src='https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js'></script>\n" +
-        Indent3 + "<script src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js'></script>\n" +
-        Indent2 + "<![endif]-->\n" +
-        Indent + "</head>\n\n" +
-        Indent + "<body>\n" +
-        Indent2 + "<nav class='navbar navbar-inverse navbar-fixed-top' role='navigation'>\n" +
-        Indent3 + "<div class='container'>\n" +
-        Indent4 + "<div class='navbar-header'>\n" +
-        Indent5 + "<button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>\n" +
-        Indent6 + "<span class='sr-only'>Toggle navigation</span>\n" +
-        Indent6 + "<span class='icon-bar'></span>\n" +
-        Indent6 + "<span class='icon-bar'></span>\n" +
-        Indent6 + "<span class='icon-bar'></span>\n" +
-        Indent5 + "</button>\n" +
-        Indent5 + "<a class='navbar-brand' href='#'>Project name</a>\n" +
-        Indent4 + "</div>\n" +
-        Indent4 + "<div class='collapse navbar-collapse'>\n" +
-        Indent5 + "<ul class='nav navbar-nav'>\n" +
-        Indent6 + "<li class='active'><a href='#'>Home</a></li>\n" +
-        Indent6 + "<li><a href='#about'>About</a></li>\n" +
-        Indent6 + "<li><a href='#contact'>Contact</a></li>\n" +
-        Indent5 + "</ul>\n" +
-        Indent4 + "</div><!--/.nav-collapse -->\n" +
-        Indent3 + "</div>\n" +
-        Indent2 + "</nav>\n" +
-        Indent2 + "<div class='container'>\n" +
-        Indent3 + "<div class='starter-template'>\n" +
-        Indent4 + "<h1>Hello, world!</h1>\n" +
-        Indent4 + "<p class='lead'>Now you can start your own project with <a target='_blank' href='http://getbootstrap.com/'>Bootstrap boots-version</a>. This plugin is a fork from <a href='https://github.com/le717/brackets-html-skeleton#readme'>HTML Skeleton</a>.</p>\n" +
-        Indent3 + "</div>\n" +
-        Indent2 + "</div>\n" +
-        Indent2 + "<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->\n" +
-        Indent2 + "<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>\n" +
-        Indent2 + "<!-- compiled and minified Bootstrap JavaScript -->\n" +
-        Indent2 + "<script src='https://netdna.bootstrapcdn.com/bootstrap/boots-version/js/bootstrap.min.js'></script>\n" +
-        Indent + "</body>\n" +
-        "</html>\n";
+    var htmlSkelly = "<!DOCTYPE html>\n<html lang=''>\n<head>\nindent-size<meta charset='UTF-8'>\n" +
+        "indent-size<meta name='viewport' content='width=device-width, initial-scale=1.0'>\n" +
+        "indent-size<meta name='description' content=''>\nindent-size<meta name='author' content=''>\n" +
+        "indent-size<title>Starter Template for Bootstrap boots-version</title>\nindent-size<link rel='shortcut icon' href=''>\n" +
+        "indent-size<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/boots-version/css/bootstrap.min.css'>\n" +
+        "indent-size<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/boots-version/css/bootstrap-theme.min.css'>\n" +
+        "indent-size<style>body{padding-top:50px;}.starter-template{padding:40px 15px;text-align:center;}</style>\n\n" +
+        "indent-size<!--[if IE]>\nindent-sizeindent-size<script src='https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js'></script>\n" +
+        "indent-sizeindent-size<script src='https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js'></script>\nindent-size<![endif]-->\n" +
+        "</head>\n\n<body>\nindent-size<nav class='navbar navbar-inverse navbar-fixed-top' role='navigation'>\n" +
+        "indent-sizeindent-size<div class='container'>\nindent-sizeindent-sizeindent-size<div class='navbar-header'>\n" +
+        "indent-sizeindent-sizeindent-sizeindent-size<button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>\n" +
+        "indent-sizeindent-sizeindent-sizeindent-sizeindent-size<span class='sr-only'>Toggle navigation</span>\n" +
+        "indent-sizeindent-sizeindent-sizeindent-sizeindent-size<span class='icon-bar'></span>\n" +
+        "indent-sizeindent-sizeindent-sizeindent-sizeindent-size<span class='icon-bar'></span>\n" +
+        "indent-sizeindent-sizeindent-sizeindent-sizeindent-size<span class='icon-bar'></span>\nindent-sizeindent-sizeindent-sizeindent-size</button>\n" +
+        "indent-sizeindent-sizeindent-sizeindent-size<a class='navbar-brand' href='#'>Project name</a>\nindent-sizeindent-sizeindent-size</div>\n\n" +
+        "indent-sizeindent-sizeindent-size<div class='collapse navbar-collapse'>\n" +
+        "indent-sizeindent-sizeindent-sizeindent-size<ul class='nav navbar-nav'>\n" +
+        "indent-sizeindent-sizeindent-sizeindent-sizeindent-size<li class='active'><a href='#'>Home</a></li>\n" +
+        "indent-sizeindent-sizeindent-sizeindent-sizeindent-size<li><a href='#about'>About</a></li>\n" +
+        "indent-sizeindent-sizeindent-sizeindent-sizeindent-size<li><a href='#contact'>Contact</a></li>\n" +
+        "indent-sizeindent-sizeindent-sizeindent-size</ul>\nindent-sizeindent-sizeindent-size</div><!--.nav-collapse -->\n" +
+        "indent-sizeindent-size</div>\nindent-size</nav>\n\n" +
+        "indent-size<div class='container'>\nindent-sizeindent-size<div class='starter-template'>\n" +
+        "indent-sizeindent-sizeindent-size<h1>Hello, world!</h1>\n" +
+        "indent-sizeindent-sizeindent-sizeindent-size<p class='lead'>Now you can start your own project with <a target='_blank' href='http://getbootstrap.com/'>Bootstrap boots-version</a>. This plugin is a fork from <a href='https://github.com/le717/brackets-html-skeleton#readme'>HTML Skeleton</a>.</p>\n" +
+        "indent-sizeindent-size</div>\nindent-size</div>\n\n" +
+        "indent-size<script src='https://ajax.googleapis.com/ajax/libs/jquery/jq-version/jquery.min.js'></script>\n" +
+        "indent-size<script src='https://maxcdn.bootstrapcdn.com/bootstrap/boots-version/js/bootstrap.min.js'></script>\n" +
+        "</body>\n</html>\n";
 
     // Since fetching the lastest version is an async process,
     // the rest of the actions need to be too
@@ -117,10 +134,13 @@ define(function (require, exports, module) {
         // Insert the skeleton at the current cursor position
         var insertionPos = editor.getCursorPos();
         editor.document.batchOperation(function () {
-          // Do a regex search for the `boots-version` keyword
-          // and replace it with the Bootstrap version constant
+          // Do a regex search for asset version keywords
+          // and replace them with the appropriate version number,
+          // as well as for the `indent-size` keyword with indentation settings
           // Also replace all single quotes with double quotes
           htmlSkelly = htmlSkelly.replace(/boots-version/g, version)
+                                 .replace(/jq-version/g, JQUERY_VERSION)
+                                 .replace(/indent-size/g, indentUnits)
                                  .replace(/'/g, "\"");
           editor.document.replaceRange(htmlSkelly, insertionPos);
         });
