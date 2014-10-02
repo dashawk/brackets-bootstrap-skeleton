@@ -16,6 +16,9 @@ define(function (require, exports, module) {
   // The user's indentation settings
   var indentUnits  = "";
 
+  // jQuery version constant
+  var JQUERY_VERSION = "1.11.1";
+
 
   /**
    * @private
@@ -119,7 +122,7 @@ define(function (require, exports, module) {
         "indent-sizeindent-sizeindent-size<h1>Hello, world!</h1>\n" +
         "indent-sizeindent-sizeindent-sizeindent-size<p class='lead'>Now you can start your own project with <a target='_blank' href='http://getbootstrap.com/'>Bootstrap boots-version</a>. This plugin is a fork from <a href='https://github.com/le717/brackets-html-skeleton#readme'>HTML Skeleton</a>.</p>\n" +
         "indent-sizeindent-size</div>\nindent-size</div>\n\n" +
-        "indent-size<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>\n" +
+        "indent-size<script src='https://ajax.googleapis.com/ajax/libs/jquery/jq-version/jquery.min.js'></script>\n" +
         "indent-size<script src='https://maxcdn.bootstrapcdn.com/bootstrap/boots-version/js/bootstrap.min.js'></script>\n" +
         "</body>\n</html>\n";
 
@@ -131,11 +134,12 @@ define(function (require, exports, module) {
         // Insert the skeleton at the current cursor position
         var insertionPos = editor.getCursorPos();
         editor.document.batchOperation(function () {
-          // Do a regex search for the `boots-version` keyword
-          // and replace it with the Bootstrap version constant
-          // as well as the `indent-size` keyword with indentation settings
+          // Do a regex search for asset version keywords
+          // and replace them with the appropriate version number,
+          // as well as for the `indent-size` keyword with indentation settings
           // Also replace all single quotes with double quotes
           htmlSkelly = htmlSkelly.replace(/boots-version/g, version)
+                                 .replace(/jq-version/g, JQUERY_VERSION)
                                  .replace(/indent-size/g, indentUnits)
                                  .replace(/'/g, "\"");
           editor.document.replaceRange(htmlSkelly, insertionPos);
