@@ -40,8 +40,11 @@ define(function (require, exports, module) {
     // Check the current project's preference on tabs and
     // update the indentation settings for either tabs for spaces
     return (PreferencesManager.get("useTabChar", PreferencesManager.CURRENT_PROJECT) ?
-            _repeatString("\u0009", PreferencesManager.get("tabSize")) :
-            _repeatString("\u0020", PreferencesManager.get("spaceUnits")));
+            "\u0009" : "\u0020");
+			      // Brackets default indentation width is 4 so there is no need
+			      // to repeat these strings
+            // _repeatString("\u0009", PreferencesManager.get("tabSize")) :
+            // _repeatString("\u0020", PreferencesManager.get("spaceUnits")));
   }
 
 
